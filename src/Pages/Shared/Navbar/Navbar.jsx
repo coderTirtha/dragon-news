@@ -1,11 +1,27 @@
+import { useContext } from 'react';
 import logo from '../../../assets/logo.png';
 import { FaRegUserCircle } from 'react-icons/fa';
+import { AuthContext } from '../../../AuthProviders/AuthProviders';
+import { Link, NavLink } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Navbar = () => {
+    const { user, signOutUser } = useContext(AuthContext);
     const links = <>
-        <li><a>Home</a></li>
-        <li><a>About</a></li>
-        <li><a>Career</a></li>
+        <li><NavLink to={'/'}>Home</NavLink></li>
+        <li><NavLink to={'/about'}>About</NavLink></li>
+        <li><NavLink to={'/career'}>Career</NavLink></li>
     </>
+    const handleSignOut = () => {
+        signOutUser()
+        .then(() => {
+            toast.success('User logged out successfully!');
+        })
+        .catch(error => {
+            toast.error(error.message)
+        })
+    }
     return (
         <div>
             <div className="navbar bg-base-100">
@@ -26,10 +42,33 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end gap-4">
-                    <a className="btn btn-neutral">Login</a>
-                    <button><FaRegUserCircle className='text-2xl'></FaRegUserCircle></button>
+                    {
+                        user ?
+                            <div className="dropdown dropdown-end">
+                                <label tabIndex={0} className="btn btn-ghost btn-circle">
+                                    <div className="rounded-full">
+                                        {
+                                            user ? 
+                                            <img src={user?.photoURL} alt='user_image' ></img> :
+                                            <FaRegUserCircle className='text-2xl'></FaRegUserCircle>
+                                        }
+                                    </div>
+                                </label>
+                                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                    <li>
+                                        <a className="justify-between">
+                                            Profile
+                                        </a>
+                                    </li>
+                                    <li><a>Settings</a></li>
+                                    <li onClick={handleSignOut}><a>Logout</a></li>
+                                </ul>
+                            </div> :
+                            <Link to={'/login'} className="btn btn-neutral">Login</Link>
+                    }
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 };
