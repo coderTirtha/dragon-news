@@ -30,7 +30,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-span-2">
+                <div className="col-span-2 space-y-4">
                     {
                         news.map(aNews => <News key={aNews._id} news={aNews}></News>)
                     }

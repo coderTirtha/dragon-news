@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProviders/AuthProviders";
 import Navbar from "../Shared/Navbar/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
     const { signInUser } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
     const handleLogIn = e => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
@@ -17,6 +19,9 @@ const Login = () => {
             const user = result.user;
             console.log(user);
             toast.success("User logged in successfully!");
+            setTimeout(() => {
+                navigate(location?.state ? location.state : '/')
+            }, 2000)
         })
         .catch(error => {
             toast.error(error.message);
