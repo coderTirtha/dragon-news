@@ -1,0 +1,34 @@
+[
+    {
+        "id": "a7bc74e1",
+        "name": "All News"
+    },
+    {
+        "id": "be9d2f38",
+        "name": "Breaking News"
+    },
+    {
+        "id": "c4a5e836",
+        "name": "Regular News"
+    },
+    {
+        "id": "d88e2a72",
+        "name": "International News"
+    },
+    {
+        "id": "f1d792c5",
+        "name": "Sports"
+    },
+    {
+        "id": "g3e29c1a",
+        "name": "Entertainment"
+    },
+    {
+        "id": "h8f2e9d4",
+        "name": "Culture"
+    },
+    {
+        "id": "j9k3f1a8",
+        "name": "Arts"
+    }
+]
