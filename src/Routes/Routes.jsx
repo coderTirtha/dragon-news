@@ -6,6 +6,7 @@ import Register from "../Pages/Register/Register";
 import CategorizedHome from "../Pages/CategorizedHome/CategorizedHome";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 import NewsDetails from "../Pages/NewsDetails/NewsDetails";
+import Profile from "../Pages/Profile/Profile";
 
 const routes = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ const routes = createBrowserRouter([
                 path: '/news/:id',
                 loader: () => fetch('/news.json'),
                 element: <PrivateRoutes><NewsDetails></NewsDetails></PrivateRoutes>
+            },
+            {
+                path: '/profile',
+                element: <PrivateRoutes><Profile></Profile></PrivateRoutes>
             }
         ]
     }

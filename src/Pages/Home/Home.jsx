@@ -19,7 +19,7 @@ const Home = () => {
             <Header></Header>
             <BreakingNews></BreakingNews>
             <Navbar></Navbar>
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
                 <div>
                     <div className="menu bg-base-200 space-y-2 p-2">
                         <h2 className="text-gray-400 text-2xl font-bold px-3">All Categories</h2>
@@ -30,7 +30,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-span-2 space-y-4">
+                <div className="lg:col-span-2 space-y-4">
                     {
                         news.map(aNews => <News key={aNews._id} news={aNews}></News>)
                     }
